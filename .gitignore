@@ -1,0 +1,5 @@
+# Project exclude paths
+/target/
+/.idea
+/src/main/java/fr/bxcchus/DiscordToken.java
+/src/main/java/fr/bxcchus/database/Database.java
