@@ -34,7 +34,7 @@ public class DeleteCommand extends ListenerAdapter {
         }
     }
     public void deleteTamabotchi(MessageChannelUnion channel, Tamabotchi tamabotchi) throws SQLException {
-        TamabotchieManager.getInstance().deleteTamabotchi(tamabotchi.getId(), tamabotchi.getName(), tamabotchi.getLvl(), tamabotchi.getHp(), tamabotchi.getHappiness(), tamabotchi.getHydration(), tamabotchi.getHunger(), tamabotchi.getRace().getId(), tamabotchi.getRace().getName(), tamabotchi.getPlayer().getUid(), tamabotchi.getPlayer().getUsername());
+        TamabotchieManager.getInstance().deleteTamabotchi(tamabotchi.getId(), tamabotchi.getName(), tamabotchi.getLvl(), tamabotchi.getHp(), tamabotchi.getHappiness(), tamabotchi.getHydration(), tamabotchi.getHunger(), tamabotchi.getRace().getId(), tamabotchi.getRace().getName(), tamabotchi.getPlayer().getUid(), tamabotchi.getPlayer().getUsername(), tamabotchi.getDeath().getId(), tamabotchi.getDeath().getCause(), tamabotchi.getPoopness());
         PlayerManager.getInstance().removePlayer(tamabotchi.getPlayer().getUid(), tamabotchi.getPlayer().getUsername());
         channel.sendMessage(tamabotchi.getName() + " is deleted").queue();
         return;
