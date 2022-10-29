@@ -72,6 +72,7 @@ public class CreateCommand extends ListenerAdapter {
         eb.addField("Happiness:", "100%", false);
         eb.addField("Hydration:", "100%", false);
         eb.addField("Hunger:", "100%", false);
+        eb.addField("Poopness:", "100%", false);
         eb.addField("Owner:", playerName, false);
         channel.sendMessageEmbeds(eb.build()).queue();
         return;
