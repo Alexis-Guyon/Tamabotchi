@@ -13,7 +13,7 @@ public class TamabotchiHappinessEvent  extends TimerTask {
         try {
             for (Tamabotchi tamabotchi : TamabotchiManager.getInstance().getTamabotchis()) {
                 TamabotchiManager.getInstance().updateTamabotchiHappiness(tamabotchi.getId(), tamabotchi.getName(), tamabotchi.getLvl(), tamabotchi.getHp(), tamabotchi.getHappiness(), tamabotchi.getHydration(), tamabotchi.getHunger(), tamabotchi.getRace().getId(), tamabotchi.getRace().getName(), tamabotchi.getPlayer().getUid(), tamabotchi.getPlayer().getUsername(), tamabotchi.getDeath().getId(), tamabotchi.getDeath().getCause(), tamabotchi.getPoopness());
-                if (tamabotchi.getPoopness() <= -100) {
+                if (tamabotchi.getHappiness() <= -100) {
                     System.out.println(tamabotchi.getName() + " is dead because he wasn't happy. The owner was: " + tamabotchi.getPlayer().getUsername());
 
                     TamabotchiManager.getInstance().deleteTamabotchi(tamabotchi.getId(), tamabotchi.getName(), tamabotchi.getLvl(), tamabotchi.getHp(), tamabotchi.getHappiness(), tamabotchi.getHydration(), tamabotchi.getHunger(), tamabotchi.getRace().getId(), tamabotchi.getRace().getName(), tamabotchi.getPlayer().getUid(), tamabotchi.getPlayer().getUsername(), tamabotchi.getDeath().getId(), tamabotchi.getDeath().getCause(), tamabotchi.getPoopness());
