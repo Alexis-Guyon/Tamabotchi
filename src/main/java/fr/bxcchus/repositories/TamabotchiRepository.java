@@ -156,4 +156,13 @@ public class TamabotchiRepository {
         statement.executeUpdate(sql);
         return true;
     }
+    public boolean updateTamabotchiHp(Tamabotchi tamabotchi) throws SQLException {
+        int hp = tamabotchi.getHp() - 4;
+        Statement statement = db.getConnection().createStatement();
+
+
+        sql = "UPDATE tamabotchi SET hp = " + hp + " WHERE id = " + tamabotchi.getId();
+        statement.executeUpdate(sql);
+        return true;
+    }
 }

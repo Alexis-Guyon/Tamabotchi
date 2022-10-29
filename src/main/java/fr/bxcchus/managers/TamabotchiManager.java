@@ -68,9 +68,19 @@ public class TamabotchiManager {
         TamabotchiRepository.getInstance().updateTamabotchiHunger(tamabotchi);
         return true;
     }
+    public boolean updateTamabotchiHp(int id, String name, int level, int hp, int happiness, int hydration, int hunger, int raceId, String raceName, String uid, String username, int deathId, String cause, int poopness) throws SQLException {
+        Race race = new Race(raceId, raceName);
+        Player player = new Player(uid, username);
+        Death death = new Death(deathId, cause);
+        Tamabotchi tamabotchi = new Tamabotchi(id, name, level, hp, happiness, hydration, hunger, race, player, death, poopness);
+        TamabotchiRepository.getInstance().updateTamabotchiHp(tamabotchi);
+        return true;
+    }
 
 
     public List<Tamabotchi> getTamabotchis() throws SQLException {
         return TamabotchiRepository.getInstance().getTamabotchis();
     }
+
+
 }
