@@ -40,14 +40,16 @@ public class ShowCommand extends ListenerAdapter {
         EmbedBuilder eb = new EmbedBuilder();
         eb.setTitle("Show command");
         eb.setDescription(tamabotchi.getName() + "'s information's");
-        eb.addField("Name:", tamabotchi.getName(), true);
-        eb.addField("Race:", tamabotchi.getRace().getName(), true);
-        eb.addField("Level:", tamabotchi.getLvl() + "", true);
-        eb.addField("HP:", tamabotchi.getHp() + "%", true);
-        eb.addField("Happiness:", tamabotchi.getHappiness() + "%", true);
-        eb.addField("Hydration:", tamabotchi.getHydration() + "%", true);
-        eb.addField("Hunger:", tamabotchi.getHunger() + "%", true);
-        eb.addField("Owner:", tamabotchi.getPlayer().getUsername(), true);
+        eb.addField("Name:", tamabotchi.getName(), false);
+        eb.addField("Race:", tamabotchi.getRace().getName(), false);
+        eb.addField("Level:", tamabotchi.getLvl() + "", false);
+        eb.addField("HP:", tamabotchi.getHp() + "%", false);
+        eb.addField("Happiness:", tamabotchi.getHappiness() + "%", false);
+        eb.addField("Hydration:", tamabotchi.getHydration() + "%", false);
+        eb.addField("Hunger:", tamabotchi.getHunger() + "%", false);
+        eb.addField("Poopness:", tamabotchi.getPoopness() + "%", false);
+
+        eb.addField("Owner:", tamabotchi.getPlayer().getUsername(), false);
         channel.sendMessageEmbeds(eb.build()).queue();
         return;
     }
