@@ -90,4 +90,44 @@ public class TamabotchiRepository {
         statement.executeUpdate("delete from tamabotchi where id = " + tamabotchi.getId());
         return true;
     }
+
+    public boolean updateTamabotchiPoop(Tamabotchi tamabotchi) throws SQLException {
+        Database db = Database.getInstance();
+        int poopness = tamabotchi.getPoopness() - 1;
+
+        String sqlPoop = "UPDATE tamabotchi SET poopness = " + poopness + " WHERE id = " + tamabotchi.getId();
+        Statement statement = db.getConnection().createStatement();
+        statement.executeUpdate(sqlPoop);
+        return true;
+    }
+    public boolean updateTamabotchiHunger(Tamabotchi tamabotchi) throws SQLException {
+        Database db = Database.getInstance();
+        int hunger = tamabotchi.getHunger() - 1;
+
+        String sqlHunger = "UPDATE tamabotchi SET hunger = " + hunger + " WHERE id = " + tamabotchi.getId();
+        Statement statement = db.getConnection().createStatement();
+        statement.executeUpdate(sqlHunger);
+        return true;
+    }
+    public boolean updateTamabotchiHydration(Tamabotchi tamabotchi) throws SQLException {
+        Database db = Database.getInstance();
+        int hydration = tamabotchi.getHunger() - 1;
+
+        String sqlHydration = "UPDATE tamabotchi SET hydration = " + hydration + " WHERE id = " + tamabotchi.getId();
+        Statement statement = db.getConnection().createStatement();
+        statement.executeUpdate(sqlHydration);
+        return true;
+    }
+    public boolean updateTamabotchiHappiness(Tamabotchi tamabotchi) throws SQLException {
+        Database db = Database.getInstance();
+        int happiness = tamabotchi.getHunger() - 1;
+
+        String sqlHappiness = "UPDATE tamabotchi SET happiness = " + happiness + " WHERE id = " + tamabotchi.getId();
+        Statement statement = db.getConnection().createStatement();
+        statement.executeUpdate(sqlHappiness);
+        return true;
+    }
 }
+/*
+
+ */
