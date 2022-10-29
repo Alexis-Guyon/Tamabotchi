@@ -1,6 +1,7 @@
 package fr.bxcchus.repositories;
 
 import fr.bxcchus.database.Database;
+import fr.bxcchus.entities.Death;
 import fr.bxcchus.entities.Player;
 import fr.bxcchus.entities.Race;
 import fr.bxcchus.entities.Tamabotchi;
@@ -38,9 +39,14 @@ public class TamabotchiRepository {
         String playerUid;
         String playerUsername;
 
+        int deathId;
+        String cause;
+
+        int poopness;
+
         Database db = Database.getInstance();
         Statement statement = db.getConnection().createStatement();
-        ResultSet rs = statement.executeQuery("SELECT * FROM tamabotchi JOIN player ON player_id = player.uid JOIN race ON race_id = race.id");
+        ResultSet rs = statement.executeQuery("SELECT * FROM tamabotchi JOIN player ON player_id = player.uid JOIN race ON race_id = race.id JOIN death ON death_id = death.id");
 
         while (rs.next()) {
             id = rs.getInt("id");
@@ -57,9 +63,16 @@ public class TamabotchiRepository {
             playerUid = rs.getString("player_id");
             playerUsername = rs.getString("player.username");
 
+            deathId = rs.getInt("death_id");
+            cause = rs.getString("death.cause");
+
+            poopness = rs.getInt("poopness");
+
+
             Race race = new Race(raceId, raceName);
             Player player = new Player(playerUid, playerUsername);
-            tamabotchis.add(new Tamabotchi(id, name, lvl, hp, happiness, hydration, hunger, race, player));
+            Death death = new Death(deathId, cause);
+            tamabotchis.add(new Tamabotchi(id, name, lvl, hp, happiness, hydration, hunger, race, player, death, poopness));
         }
         return tamabotchis;
     }
@@ -67,7 +80,7 @@ public class TamabotchiRepository {
     public boolean addTamabotchi(Tamabotchi tamabotchi) throws SQLException {
         Database db = Database.getInstance();
         Statement statement = db.getConnection().createStatement();
-        statement.executeUpdate("insert into tamabotchi (id, name, level, hp, happiness, hydration, hunger, race_id, player_id) VALUES(" + 0 + ",'" + tamabotchi.getName() + "'," + tamabotchi.getLvl() + "," + tamabotchi.getHp() + "," + tamabotchi.getHappiness() + "," + tamabotchi.getHydration() + "," + tamabotchi.getHunger() + "," + tamabotchi.getRace().getId() + ",'" + tamabotchi.getPlayer().getUid() +"');");
+        statement.executeUpdate("insert into tamabotchi (id, name, level, hp, happiness, hydration, hunger, race_id, player_id, death_id, poopness) VALUES(" + 0 + ",'" + tamabotchi.getName() + "'," + tamabotchi.getLvl() + "," + tamabotchi.getHp() + "," + tamabotchi.getHappiness() + "," + tamabotchi.getHydration() + "," + tamabotchi.getHunger() + "," + tamabotchi.getRace().getId() + ",'" + tamabotchi.getPlayer().getUid() +"'," + tamabotchi.getDeath().getId() + "," + tamabotchi.getPoopness() + ");");
         return true;
     }
 
