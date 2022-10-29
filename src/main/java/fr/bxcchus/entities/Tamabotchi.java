@@ -10,8 +10,10 @@ public class Tamabotchi {
     private final int hunger;
     private final Race race;
     private final Player player;
+    private final Death death;
+    private final int poopness;
 
-    public Tamabotchi(int id, String name, int lvl, int hp, int happiness, int hydration, int hunger, Race race, Player player) {
+    public Tamabotchi(int id, String name, int lvl, int hp, int happiness, int hydration, int hunger, Race race, Player player, Death death, int poopness) {
         this.id = id;
         this.name = name;
         this.lvl = lvl;
@@ -21,6 +23,16 @@ public class Tamabotchi {
         this.hunger = hunger;
         this.race = race;
         this.player = player;
+        this.death = death;
+        this.poopness = poopness;
+    }
+
+    public Death getDeath() {
+        return death;
+    }
+
+    public int getPoopness() {
+        return poopness;
     }
 
     public int getId() {
