@@ -15,6 +15,8 @@ import java.util.List;
 public class TamabotchiRepository {
     private static TamabotchiRepository INSTANCE;
     private String sql = "";
+    private final Database db = Database.getInstance();
+
 
 
     public static TamabotchiRepository getInstance() {
@@ -46,7 +48,6 @@ public class TamabotchiRepository {
 
         int poopness;
 
-        Database db = Database.getInstance();
         Statement statement = db.getConnection().createStatement();
         ResultSet rs = statement.executeQuery("SELECT * FROM tamabotchi JOIN player ON player_id = player.uid JOIN race ON race_id = race.id JOIN death ON death_id = death.id");
 
@@ -80,21 +81,18 @@ public class TamabotchiRepository {
     }
 
     public boolean addTamabotchi(Tamabotchi tamabotchi) throws SQLException {
-        Database db = Database.getInstance();
         Statement statement = db.getConnection().createStatement();
         statement.executeUpdate("insert into tamabotchi (id, name, level, hp, happiness, hydration, hunger, race_id, player_id, death_id, poopness) VALUES(" + 0 + ",'" + tamabotchi.getName() + "'," + tamabotchi.getLvl() + "," + tamabotchi.getHp() + "," + tamabotchi.getHappiness() + "," + tamabotchi.getHydration() + "," + tamabotchi.getHunger() + "," + tamabotchi.getRace().getId() + ",'" + tamabotchi.getPlayer().getUid() +"'," + tamabotchi.getDeath().getId() + "," + tamabotchi.getPoopness() + ");");
         return true;
     }
 
     public boolean removeTamabotchi(Tamabotchi tamabotchi) throws SQLException {
-        Database db = Database.getInstance();
         Statement statement = db.getConnection().createStatement();
         statement.executeUpdate("delete from tamabotchi where id = " + tamabotchi.getId());
         return true;
     }
 
     public boolean updateTamabotchiPoop(Tamabotchi tamabotchi) throws SQLException {
-        Database db = Database.getInstance();
         int poopness = tamabotchi.getPoopness() - 1;
 
         int hp = tamabotchi.getHp() - 4;
@@ -111,7 +109,6 @@ public class TamabotchiRepository {
         return true;
     }
     public boolean updateTamabotchiHunger(Tamabotchi tamabotchi) throws SQLException {
-        Database db = Database.getInstance();
         int hunger = tamabotchi.getHunger() - 1;
 
         int hp = tamabotchi.getHp() - 4;
@@ -128,7 +125,6 @@ public class TamabotchiRepository {
         return true;
     }
     public boolean updateTamabotchiHydration(Tamabotchi tamabotchi) throws SQLException {
-        Database db = Database.getInstance();
         int hydration = tamabotchi.getHunger() - 1;
 
         int hp = tamabotchi.getHp() - 4;
@@ -145,7 +141,6 @@ public class TamabotchiRepository {
         return true;
     }
     public boolean updateTamabotchiHappiness(Tamabotchi tamabotchi) throws SQLException {
-        Database db = Database.getInstance();
         int happiness = tamabotchi.getHappiness() - 1;
 
         int hp = tamabotchi.getHp() - 4;
