@@ -12,7 +12,7 @@ public class TamabotchiHpEvent extends TimerTask {
     public void run() {
         try {
             for (Tamabotchi tamabotchi : TamabotchiManager.getInstance().getTamabotchis()) {
-                TamabotchiManager.getInstance().updateTamabotchiHappiness(tamabotchi.getId(), tamabotchi.getName(), tamabotchi.getLvl(), tamabotchi.getHp(), tamabotchi.getHappiness(), tamabotchi.getHydration(), tamabotchi.getHunger(), tamabotchi.getRace().getId(), tamabotchi.getRace().getName(), tamabotchi.getPlayer().getUid(), tamabotchi.getPlayer().getUsername(), tamabotchi.getDeath().getId(), tamabotchi.getDeath().getCause(), tamabotchi.getPoopness());
+                TamabotchiManager.getInstance().updateTamabotchiHp(tamabotchi.getId(), tamabotchi.getName(), tamabotchi.getLvl(), tamabotchi.getHp(), tamabotchi.getHappiness(), tamabotchi.getHydration(), tamabotchi.getHunger(), tamabotchi.getRace().getId(), tamabotchi.getRace().getName(), tamabotchi.getPlayer().getUid(), tamabotchi.getPlayer().getUsername(), tamabotchi.getDeath().getId(), tamabotchi.getDeath().getCause(), tamabotchi.getPoopness());
 
                 if (tamabotchi.getHp() <= 0) {
                     System.out.println(tamabotchi.getName() + " is dead because he has no hp. The owner was: " + tamabotchi.getPlayer().getUsername());
