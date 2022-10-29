@@ -11,6 +11,7 @@ import java.util.List;
 
 public class PlayerRepository {
     private static PlayerRepository INSTANCE;
+    private final Database db = Database.getInstance();
 
     public static PlayerRepository getInstance() {
         if (INSTANCE == null) INSTANCE = new PlayerRepository();
@@ -25,7 +26,6 @@ public class PlayerRepository {
         String uid;
         String username;
 
-        Database db = Database.getInstance();
         Statement statement = db.getConnection().createStatement();
         ResultSet rs = statement.executeQuery("SELECT * FROM player");
 
@@ -38,14 +38,12 @@ public class PlayerRepository {
     }
 
     public boolean addPlayer(Player player) throws SQLException {
-        Database db = Database.getInstance();
         Statement statement = db.getConnection().createStatement();
         statement.executeUpdate("insert into player (uid, username)" + "values ('" + player.getUid() + "','" + player.getUsername() + "');");
         return true;
     }
 
     public boolean removePlayer(Player player) throws SQLException {
-        Database db = Database.getInstance();
         Statement statement = db.getConnection().createStatement();
         statement.executeUpdate("delete from player where uid = " + player.getUid());
         return true;
