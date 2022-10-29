@@ -2,8 +2,7 @@ package fr.bxcchus.commands;
 
 import fr.bxcchus.entities.Tamabotchi;
 import fr.bxcchus.managers.PlayerManager;
-import fr.bxcchus.managers.TamabotchieManager;
-import net.dv8tion.jda.api.EmbedBuilder;
+import fr.bxcchus.managers.TamabotchiManager;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -21,7 +20,7 @@ public class DeleteCommand extends ListenerAdapter {
 
         if (message.equalsIgnoreCase("!delete")) {
             try {
-                for (Tamabotchi tamabotchi : TamabotchieManager.getInstance().getTamabotchis()) {
+                for (Tamabotchi tamabotchi : TamabotchiManager.getInstance().getTamabotchis()) {
                     if (Objects.equals(tamabotchi.getPlayer().getUid(), author.getId())) {
                         deleteTamabotchi(channel, tamabotchi);
                     } else {
@@ -34,7 +33,7 @@ public class DeleteCommand extends ListenerAdapter {
         }
     }
     public void deleteTamabotchi(MessageChannelUnion channel, Tamabotchi tamabotchi) throws SQLException {
-        TamabotchieManager.getInstance().deleteTamabotchi(tamabotchi.getId(), tamabotchi.getName(), tamabotchi.getLvl(), tamabotchi.getHp(), tamabotchi.getHappiness(), tamabotchi.getHydration(), tamabotchi.getHunger(), tamabotchi.getRace().getId(), tamabotchi.getRace().getName(), tamabotchi.getPlayer().getUid(), tamabotchi.getPlayer().getUsername(), tamabotchi.getDeath().getId(), tamabotchi.getDeath().getCause(), tamabotchi.getPoopness());
+        TamabotchiManager.getInstance().deleteTamabotchi(tamabotchi.getId(), tamabotchi.getName(), tamabotchi.getLvl(), tamabotchi.getHp(), tamabotchi.getHappiness(), tamabotchi.getHydration(), tamabotchi.getHunger(), tamabotchi.getRace().getId(), tamabotchi.getRace().getName(), tamabotchi.getPlayer().getUid(), tamabotchi.getPlayer().getUsername(), tamabotchi.getDeath().getId(), tamabotchi.getDeath().getCause(), tamabotchi.getPoopness());
         PlayerManager.getInstance().removePlayer(tamabotchi.getPlayer().getUid(), tamabotchi.getPlayer().getUsername());
         channel.sendMessage(tamabotchi.getName() + " is deleted").queue();
         return;

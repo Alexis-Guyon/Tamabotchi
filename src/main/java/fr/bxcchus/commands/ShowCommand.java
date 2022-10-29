@@ -1,8 +1,7 @@
 package fr.bxcchus.commands;
 
 import fr.bxcchus.entities.Tamabotchi;
-import fr.bxcchus.managers.PlayerManager;
-import fr.bxcchus.managers.TamabotchieManager;
+import fr.bxcchus.managers.TamabotchiManager;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
@@ -21,10 +20,10 @@ public class ShowCommand extends ListenerAdapter {
 
         if (message.equalsIgnoreCase("!show")) {
             try {
-                if (TamabotchieManager.getInstance().getTamabotchis().isEmpty()) {
+                if (TamabotchiManager.getInstance().getTamabotchis().isEmpty()) {
                     channel.sendMessage("No Tamabotchi found..").queue();
                 }
-                for (Tamabotchi tamabotchi : TamabotchieManager.getInstance().getTamabotchis()) {
+                for (Tamabotchi tamabotchi : TamabotchiManager.getInstance().getTamabotchis()) {
                     if (Objects.equals(tamabotchi.getPlayer().getUid(), author.getId())) {
                         showTamabotchi(channel, tamabotchi);
                     } else {

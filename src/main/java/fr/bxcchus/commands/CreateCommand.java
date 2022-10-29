@@ -1,9 +1,8 @@
 package fr.bxcchus.commands;
 
-import fr.bxcchus.entities.Player;
 import fr.bxcchus.entities.Tamabotchi;
 import fr.bxcchus.managers.PlayerManager;
-import fr.bxcchus.managers.TamabotchieManager;
+import fr.bxcchus.managers.TamabotchiManager;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.entities.channel.unions.MessageChannelUnion;
@@ -31,13 +30,13 @@ public class CreateCommand extends ListenerAdapter {
             System.out.println(author.getIdLong());
 
             try {
-                if (TamabotchieManager.getInstance().getTamabotchis().isEmpty() && PlayerManager.getInstance().getPlayers().isEmpty()) {
+                if (TamabotchiManager.getInstance().getTamabotchis().isEmpty() && PlayerManager.getInstance().getPlayers().isEmpty()) {
                     PlayerManager.getInstance().createPlayer(author.getId(), author.getName());
                     createTamabotchi(author.getId(), author.getName(), name, channel, 1, "Alive");
                     return;
                 }
 
-                for (Tamabotchi tamabotchi : TamabotchieManager.getInstance().getTamabotchis()) {
+                for (Tamabotchi tamabotchi : TamabotchiManager.getInstance().getTamabotchis()) {
                     if (Objects.equals(tamabotchi.getPlayer().getUid(), author.getId())) {
                         channel.sendMessage(author.getName() + " you already have a Tamabotchi.\nUse: !show").queue();
                     } else {
@@ -62,7 +61,7 @@ public class CreateCommand extends ListenerAdapter {
     public void createTamabotchi(String id, String playerName, String tamabotchiName, MessageChannelUnion channel, int deathId, String cause) throws SQLException {
         EmbedBuilder eb = new EmbedBuilder();
         System.out.println(tamabotchiName + " " + playerName);
-        TamabotchieManager.getInstance().createTamabotchie(1, tamabotchiName, 1, 100, 100, 100, 100, 1, "Common", id, playerName, deathId, cause, 100);
+        TamabotchiManager.getInstance().createTamabotchie(1, tamabotchiName, 1, 100, 100, 100, 100, 1, "Common", id, playerName, deathId, cause, 100);
         eb.setTitle("Creation..");
         eb.setDescription("Tamabotchi created");
         eb.addField("Name:", tamabotchiName, false);

@@ -9,14 +9,14 @@ import fr.bxcchus.repositories.TamabotchiRepository;
 import java.sql.SQLException;
 import java.util.List;
 
-public class TamabotchieManager {
-    private static TamabotchieManager INSTANCE;
+public class TamabotchiManager {
+    private static TamabotchiManager INSTANCE;
 
-    public static TamabotchieManager getInstance() {
-        if(INSTANCE == null) INSTANCE = new TamabotchieManager();
+    public static TamabotchiManager getInstance() {
+        if(INSTANCE == null) INSTANCE = new TamabotchiManager();
         return INSTANCE;
     }
-    private TamabotchieManager() {}
+    private TamabotchiManager() {}
 
     public boolean createTamabotchie(int id, String name, int level, int hp, int happiness, int hydration, int hunger, int raceId, String raceName, String uid, String username, int deathId, String cause, int poopness) throws SQLException {
         Race race = new Race(raceId, raceName);
